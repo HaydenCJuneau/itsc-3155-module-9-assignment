@@ -5,4 +5,34 @@
 {% block body %}
 <h1 class="mb-5"></h1>
 <!-- TODO: Feature 4 -->
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Director</th>
+                    <th scope="col">Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">{{ movie_id }}</th>
+                    <td>{{ selected_movie.title }}</td>
+                    <td>{{ selected_movie.director }}</td>
+                    <td>{{ selected_movie.rating }}</td>
+                    <td>
+                        <form action="/movies/{{ movie_id }}/edit" method="GET">
+                            <button type="submit" class="btn btn-success">Edit</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="POST" action="/movies/{{ movie_id }}/delete">
+                            <button type="submit" class="btn btn-danger" name="delete" id="{{ movie_id }}" href="/delete">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

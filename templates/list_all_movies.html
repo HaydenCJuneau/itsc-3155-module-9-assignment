@@ -25,6 +25,11 @@
                 <td>{{list_movies[i].director}}</td>
                 <td>{{list_movies[i].rating}}</td>
                 <td>
+                    <form method="POST" action="/movies/{{ list_movies[i].movie_id}}">
+                        <button type="submit" class="btn btn-success" name="view" id="{{movie_id}}">View</button>
+                    </form>
+                </td>
+                <td>
                 <form method="POST" action="/movies/{{ list_movies[i].movie_id}}/delete">
                     <button type="submit" class="btn btn-danger" name="delete" id="{{movie_id}}" href="/delete">Delete</button>
                 </form>

@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request
+from flask import Flask, redirect, render_template, request,abort
 
 from src.repositories.movie_repository import get_movie_repository
 
@@ -25,7 +25,11 @@ def create_movies_form():
 
 
 @app.post('/movies')
+<<<<<<< HEAD
 def create_movie():
+=======
+def create_movie(): 
+>>>>>>> origin/main
     title = request.form.get('title', '').strip()
     director = request.form.get('director', '').strip()
     rating_str = request.form.get('rating', None)
@@ -46,10 +50,22 @@ def create_movie():
     return redirect('/movies')
 
 
-@app.get('/movies/search')
+@app.route('/movies/search', methods=['GET', 'POST'])
 def search_movies():
-    # TODO: Feature 3
-    return render_template('search_movies.html', search_active=True)
+    rating = None
+    movie_title = None
+
+    if request.method == 'POST':
+        movie_title = request.form.get('movie_title', '').strip()
+
+        if movie_title:
+            # Use the MovieRepository to get a movie by its title
+            movie = movie_repository.get_movie_by_title(movie_title)
+            
+            if movie:
+                rating = movie.rating
+
+    return render_template('search_movies.html', search_active=True, rating=rating, movie_title=movie_title)
 
 
 @app.get('/movies/<int:movie_id>')
@@ -57,7 +73,10 @@ def get_single_movie(movie_id: int):
     # TODO: Feature 4
     selected_movie = movie_repository.get_movie_by_id(movie_id)
     return render_template('get_single_movie.html', selected_movie=selected_movie, movie_id=movie_id)
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
 
 
 @app.get('/movies/<int:movie_id>/edit')
@@ -94,5 +113,10 @@ def update_movie(movie_id: int):
 
 @app.post('/movies/<int:movie_id>/delete')
 def delete_movie(movie_id: int):
-    # TODO: Feature 6
-    pass
+    movie = movie_repository.get_movie_by_id(movie_id)
+
+    if movie is None:
+        abort(400)
+
+    movie_repository.delete_movie(movie_id)
+    return redirect('/movies')

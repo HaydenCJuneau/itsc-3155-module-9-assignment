@@ -3,7 +3,24 @@
 {% block title %}Movie Rating App | Search Movie Ratings{% endblock %}
 
 {% block body %}
-<h1 class="mb-5">Search Movie Ratings</h1>
-<p class="mb-3">Search for a movie rating below</p>
-<!-- TODO: Feature 3 -->
+<div>
+    <h1 class="mb-5">Search Movie Ratings</h1>
+    <p class="mb-3">Search for a movie rating below</p>
+
+    <form method="POST" action="/movies/search">
+        <div class="form-group">
+            <label for="movie_title">Enter Movie Title:</label>
+            <input type="text" class="form-control" name="movie_title" id="movie_title" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    {% if rating is not none %}
+        <h2>Rating for "{{ movie_title }}": {{ rating }}</h2>
+    {% endif %}
+
+    {% if rating is none and movie_title %}
+        <p>No rating found for "{{ movie_title }}".</p>
+    {% endif %}
+</div>
 {% endblock %}

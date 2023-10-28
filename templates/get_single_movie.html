@@ -27,8 +27,13 @@
                         </form>
                     </td>
                     <td>
+<<<<<<< HEAD
                         <form action="/movies/{{ movie_id }}/delete" method="GET">
                             <button type="submit" class="btn btn-danger">Delete</button>
+=======
+                        <form method="POST" action="/movies/{{ movie_id }}/delete">
+                            <button type="submit" class="btn btn-danger" name="delete" id="{{ movie_id }}" href="/delete">Delete</button>
+>>>>>>> origin/main
                         </form>
                     </td>
                 </tr>

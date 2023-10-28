@@ -16,9 +16,9 @@ def test_update_movie_data():
 
     with app.test_client() as client:
         # Use the proper HTTP method for updating (typically PUT or PATCH)
-        response = client.put(f'/movies/{movie_id}', data=updated_movie_data)
+        response = client.post(f'/movies/{movie_id}', data=updated_movie_data)
 
-    assert response.status_code == 405
+    assert response.status_code == 302
 
     updated_movie = movie_repository.get_movie_by_id(movie_id)
 

@@ -25,11 +25,7 @@ def create_movies_form():
 
 
 @app.post('/movies')
-<<<<<<< HEAD
 def create_movie():
-=======
-def create_movie(): 
->>>>>>> origin/main
     title = request.form.get('title', '').strip()
     director = request.form.get('director', '').strip()
     rating_str = request.form.get('rating', None)
@@ -73,10 +69,6 @@ def get_single_movie(movie_id: int):
     # TODO: Feature 4
     selected_movie = movie_repository.get_movie_by_id(movie_id)
     return render_template('get_single_movie.html', selected_movie=selected_movie, movie_id=movie_id)
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/main
 
 
 @app.get('/movies/<int:movie_id>/edit')

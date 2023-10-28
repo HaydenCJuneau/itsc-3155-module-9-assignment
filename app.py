@@ -82,7 +82,7 @@ def update_movie(movie_id: int):
     # TODO: Feature 5
     # After updating the movie in the database, we redirect back to that single movie page
     
-    movie_id = request.form.get('movie_id')
+    # movie_id = request.form.get('movie_id')
 
     title = request.form.get('title', '').strip()
     director = request.form.get('director', '').strip()
